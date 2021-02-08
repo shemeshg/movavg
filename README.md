@@ -1,5 +1,5 @@
 
-# movavg - moving average
+# movavg - moving average cpp utility
 
 C++ utility, Adds colomn of the moving average
 
