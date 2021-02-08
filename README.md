@@ -15,7 +15,11 @@ Allowed options:
 
 ## Building
 
-* install boot with `apt-get install boost` or on mac `brew install boost`
+1. install boot with `apt-get install boost` or on mac `brew install boost`
+2. you might want also to install `apt-get install googletest` or on mac `brew install googletest` 
+or just remark the `add_subdirectory(test)` in the `CMakeLists.txt`
+
+3. cmake the project
 
 ```bash
 git clone https://github.com/shemeshg/movavg.git
