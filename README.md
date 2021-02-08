@@ -18,6 +18,8 @@ Allowed options:
 * install boot with `apt-get install boost` or on mac `brew install boost`
 
 ```bash
+git clone https://github.com/shemeshg/movavg.git
+cd movavg
 mkdir build
 cd build
 cmake ..
