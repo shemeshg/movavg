@@ -4,6 +4,11 @@
 #include <algorithm>
 #include <vector>
 
+/*
+Probably next time I should have used std::accumulate
+https://stackoverflow.com/questions/7616511/calculate-mean-and-standard-deviation-from-a-vector-of-samples-in-c-using-boos
+*/
+
 template <typename T, typename Total>
 class Moving_Average
 {
