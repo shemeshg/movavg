@@ -39,7 +39,8 @@ it is linked staticlly, so just copy the file `movavg` anywhere youd like.
 ## Example of usage
 
 ```bash
-curl https://covid.ourworldindata.org/data/owid-covid-data.json --output data.json
+# curl https://covid.ourworldindata.org/data/owid-covid-data.json --output data.json
+curl https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.json --output data.json
 cat data.json| jq '.["ISR"].data'  | jq -r '.[] | {date, hosp_patients, icu_patients_per_million, new_deaths_per_million} |join(",") '  > list.txt
 cat list.txt|./movavg -l 7 -n 1|./movavg -l 10 -n 2|./movavg -l 10 -n 3
 ```
