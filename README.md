@@ -8,9 +8,10 @@ C++ utility, Adds colomn of the moving average
 Allowed options:
   -h [ --help ]         produce help message
   -e [ --showErr ]      show errors
-  -l [ --len ] arg      set moving avg len, default 7
+  -l [ --len ] arg      set moving avg len, 0 for none moving, default 7
   -d [ --coldelim ] arg set column delimiter, default ',' 
   -n [ --colnum ] arg   set column number, default 0
+  --nullstr arg         set null string, default 'null' 
 ```
 
 ## Building

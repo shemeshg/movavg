@@ -20,6 +20,10 @@ class Moving_Average
             samples_[num_samples_++] = sample;
             total_ += sample;
         }
+        else if(N == 0){
+          total_ += sample;
+          num_samples_++;
+        }
         else
         {
             T& oldest = samples_[num_samples_++ % N];
@@ -28,7 +32,14 @@ class Moving_Average
         }
     }
 
-    operator double() const { return total_ / std::min(num_samples_, N); }
+    operator double() const { 
+      if (N ==0){return total_ / num_samples_;}
+      return total_ / std::min(num_samples_, N); 
+    }
+
+    bool isNull(){
+      return num_samples_ == 0;
+    }
 
   private:
     size_t N = 1;
