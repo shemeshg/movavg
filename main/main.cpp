@@ -1,9 +1,8 @@
 #include "libmovavg.h"
+#include "cxxopts.hpp"
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <boost/program_options.hpp>
-namespace po = boost::program_options;
 
 std::vector<std::string> split(std::string s, std::string delimiter)
 {
@@ -66,55 +65,40 @@ void loopLine(std::istream &f, const size_t mva_len, const std::string colDelim,
         perror("error while reading file");
 }
 
-int main(int ac, char *av[])
+int main(int argc, char **argv)
 {
 
     try
     {
 
-        po::options_description desc("Allowed options");
-        desc.add_options()("help,h", "produce help message")("showErr,e", "show errors")
-                ("len,l", po::value<size_t>(), "set moving avg len, 0 for none moving, default 7")
-                ("coldelim,d", po::value<std::string>(), "set column delimiter, default ',' ")
-                ("colnum,n", po::value<size_t>(), "set column number, default 0")
-                ("nullstr", po::value<std::string>(), "set null string, default 'null' ");
+        cxxopts::Options options("movavg", "moving average cpp utility");
+ 
+        options.add_options()
+        ("e,showErr", "show errors",cxxopts::value<bool>()->default_value("false"))
+        ("l,len", "set moving avg len, 0 for none moving", cxxopts::value<int>()->default_value("7"))
+        ("d,coldelim", "set column delimiter", cxxopts::value<std::string>()->default_value(","))
+        ("n,colnum", "set column number", cxxopts::value<int>()->default_value("0"))
+        ("nullstr", "set null string", cxxopts::value<std::string>()->default_value("null"))
+        ("h,help", "Print usage")
+        ;
+        auto result = options.parse(argc, argv);
 
-        po::variables_map vm;
-        po::store(po::parse_command_line(ac, av, desc), vm);
-        po::notify(vm);
-
-        if (vm.count("help"))
+        if (result.count("help"))
         {
-            std::cout << desc << "\n";
+            std::cout << options.help() << std::endl;
             return 0;
         }
 
-        bool showErr = false;
-        if (vm.count("showErr"))
-        {
-            showErr = true;
-        }
+        bool showErr = result["showErr"].as<bool>();
 
-        size_t len = 7;
-        if (vm.count("len"))
-        {
-            len = vm["len"].as<size_t>();
-        }
-        std::string coldelim = ",";
-        if (vm.count("coldelim"))
-        {
-            coldelim = vm["coldelim"].as<std::string>();
-        }
-        size_t colnum = 0;
-        if (vm.count("colnum"))
-        {
-            colnum = vm["colnum"].as<size_t>();
-        }
-        std::string nullstr = "null";
-        if (vm.count("nullstr"))
-        {
-            coldelim = vm["nullstr"].as<std::string>();
-        }
+        size_t len = result["len"].as<int>();
+
+        std::string coldelim = result["coldelim"].as<std::string>();
+
+        size_t colnum = result["colnum"].as<int>();
+
+        std::string nullstr = result["nullstr"].as<std::string>();
+        ;
 
         loopLine(std::cin, len, coldelim, colnum, showErr, nullstr);
     }

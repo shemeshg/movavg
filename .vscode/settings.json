@@ -1,6 +1,8 @@
 {
   "cSpell.enabled": false,
   "files.associations": {
+    "*.cpp2": "cpp",
+    "*.h2": "cpp",
     "iosfwd": "cpp",
     "__bit_reference": "cpp",
     "__config": "cpp",
@@ -78,6 +80,18 @@
     "strstream": "cpp",
     "thread": "cpp",
     "typeindex": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "__verbose_abort": "cpp",
+    "charconv": "cpp",
+    "clocale": "cpp",
+    "execution": "cpp",
+    "forward_list": "cpp",
+    "numbers": "cpp",
+    "queue": "cpp",
+    "regex": "cpp",
+    "semaphore": "cpp",
+    "shared_mutex": "cpp",
+    "span": "cpp",
+    "unordered_set": "cpp"
   }
 }

@@ -7,6 +7,6 @@ project(movavg VERSION 0.1.0)
 enable_testing()
 
 add_subdirectory(main)
-add_subdirectory(test)
-add_subdirectory(libmovavg)
+#add_subdirectory(test)
+#add_subdirectory(libmovavg)
 

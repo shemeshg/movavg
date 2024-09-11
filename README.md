@@ -36,6 +36,21 @@ cd main
 
 it is linked staticlly, so just copy the file `movavg` anywhere youd like.
 
+# build using cosmopolitan
+
+```
+ASM="/Volumes/RAM_Disk_4G/cosmocc/bin/cosmocc" \
+CC="/Volumes/RAM_Disk_4G/cosmocc/bin/cosmocc" \
+CXX="/Volumes/RAM_Disk_4G/cosmocc/bin/cosmoc++" \
+cmake .. \
+  -DCMAKE_SYSTEM_NAME="Generic" \
+  -UCMAKE_SYSTEM_PROCESSOR \
+  -DCMAKE_USER_MAKE_RULES_OVERRIDE="/Volumes/RAM_Disk_4G/movavg/cosmocc-override.cmake" \
+  -DCMAKE_AR="$(command -v cosmoar)" \
+  -UCMAKE_RANLIB \
+  -B .
+```
+
 ## Example of usage
 
 ```bash
